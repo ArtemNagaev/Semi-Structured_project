@@ -1,0 +1,15 @@
+{
+	"item1": {
+		"name": "name1",
+		"stat": "stat1",
+		"icon": "/C:test"
+	},
+	"item2": {
+		"name": "name2",
+		"stat": "stat2"
+	},
+	"item3": {
+		"name": "name3",
+		"stat": "stat3"
+	}
+}
