@@ -1,15 +1,39 @@
 {
 	"item1": {
-		"name": "name1",
-		"stat": "stat1",
-		"icon": "/C:test"
+		"name": "Backsword",
+		"stat": ["Weapon", "Melee"],
+		"icon": "Icon Pack - Cleaver Brown Clean.png",
+		"statFloat": [{
+				"statLabel": "Attack",
+				"statValue": 10
+			},
+			{
+				"statLabel": "Price",
+				"statValue": 50
+			}
+		]
 	},
 	"item2": {
-		"name": "name2",
-		"stat": "stat2"
+		"name": "Health Potion",
+		"stat": "Potion",
+		"icon": "Icon Pack - Potion Red Vial.png",
+		"statFloat": {
+			"statLabel": "Restore HP",
+			"statValue": 10
+		}
 	},
 	"item3": {
-		"name": "name3",
-		"stat": "stat3"
+		"name": "Iron Shield",
+		"stat": "Shield",
+		"icon": "Icon Pack - Coin Silver.png",
+		"statFloat": {
+			"statLabel": "Block damage",
+			"statValue": 50
+		}
+	},
+	"item4": {
+		"name": "Mage's Book",
+		"stat": "Quest item",
+		"icon": "Icon Pack - Books Gold Blue.png"
 	}
 }
