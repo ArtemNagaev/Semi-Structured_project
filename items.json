@@ -4,14 +4,21 @@
 		"stat": ["Weapon", "Melee"],
 		"icon": "Icon Pack - Cleaver Brown Clean.png",
 		"statFloat": [{
-				"statLabel": "Attack",
-				"statValue": 10
-			},
-			{
-				"statLabel": "Price",
-				"statValue": 50
-			}
-		]
+			"statLabel": "Attack",
+			"statValue": 10
+		},
+		{
+			"statLabel": "Price",
+			"statValue": 50
+		}],
+		"about": [{
+			"title": "gives skill test",
+			"text": "Attack every one arounds"
+		},
+		{
+			"title": "about",
+			"text": "This is weapon from king's "
+		}]
 	},
 	"item2": {
 		"name": "Health Potion",
@@ -34,6 +41,10 @@
 	"item4": {
 		"name": "Mage's Book",
 		"stat": "Quest item",
-		"icon": "Icon Pack - Books Gold Blue.png"
+		"icon": "Icon Pack - Books Gold Blue.png",
+		"about": {
+			"title": "about",
+			"text": "This is Mage's book you need to take it to him\nMagic!"
+		}
 	}
 }

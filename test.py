@@ -25,8 +25,8 @@ for item in data.values():
     
     VerticalLayout = Qt.QVBoxLayout(group)
 
-    sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.MinimumExpanding)
-    sizePolicy.setHorizontalStretch(1)
+    sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+    sizePolicy.setHorizontalStretch(0)
     sizePolicy.setVerticalStretch(1)
     group.setSizePolicy(sizePolicy)
     
@@ -103,6 +103,40 @@ for item in data.values():
     except:
         print("can't do statFloat")
         
+             
+    try:
+        if(isinstance(item['about'], list)):
+            for about in item['about']:
+                group2 = Qt.QGroupBox(about.get('title'))
+                group2.setAlignment(QtCore.Qt.AlignHCenter)
+                VerticalLayout2 = Qt.QHBoxLayout(group2)
+                label = Qt.QLabel(about.get('text'))
+                label.setWordWrap(True)
+                VerticalLayout2.addWidget(label)
+                
+                #sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.MinimumExpanding)
+                #group2.setSizePolicy(sizePolicy)
+                
+                VerticalLayout.addWidget(group2)
+                    
+            for about in item['about']:
+                print(about.get('title'))
+
+        else:
+            group2 = Qt.QGroupBox(item['about'].get('title'))
+            group2.setAlignment(QtCore.Qt.AlignHCenter)
+            VerticalLayout2 = Qt.QHBoxLayout(group2)
+            label = Qt.QLabel(str(item['about'].get('text')))
+            label.setWordWrap(True)
+            VerticalLayout2.addWidget(label)
+            
+            #sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.MinimumExpanding)
+            #group2.setSizePolicy(sizePolicy)
+            
+            VerticalLayout.addWidget(group2)
+    except:
+        print("can't do about")
+        
     print("\n")
     
     i=i+1
@@ -112,7 +146,7 @@ w = Qt.QWidget()
 w.setLayout(layout)
 
 mw = Qt.QScrollArea()
-mw.resize(260, 900)
+mw.resize(275, 900)
 mw.setWidget(w)
 mw.show()
 
