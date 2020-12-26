@@ -8,19 +8,28 @@ app = Qt.QApplication([])
 
 layout = Qt.QGridLayout()
 
+
 txt = Path('items.json').read_text()
 data = json.loads(txt)
 print(txt)
 
-i = 0
+def indexChange(i, j):
+    i=i+1
+    if(i>=4):
+        i=0
+        j=j+1
+    return i,j
 
+
+i = 0
+j = 0
     
 for item in data.values():
 
     #for key in item['stat']:
     #    print(key)
     
-    group = Qt.QGroupBox("Some item")
+    group = Qt.QGroupBox("Item")
 
     
     VerticalLayout = Qt.QVBoxLayout(group)
@@ -29,9 +38,11 @@ for item in data.values():
     sizePolicy.setHorizontalStretch(0)
     sizePolicy.setVerticalStretch(1)
     group.setSizePolicy(sizePolicy)
-    
-    layout.addWidget(group, i, 1)
 
+    
+    layout.addWidget(group, j, i)
+    i,j = indexChange(i,j)
+    
     #Название
     try:
         group.setTitle(item['name'])
@@ -54,7 +65,6 @@ for item in data.values():
         label.resize(50, 50)
         VerticalLayout.addWidget(label)
 
-        i=i+1
     except:
         print("no icon")
 
@@ -68,7 +78,7 @@ for item in data.values():
         else:
             label = Qt.QLabel(item['stat'])
             VerticalLayout.addWidget(label)
-        i=i+1
+        
     except:
         print("no stat")
     
@@ -106,21 +116,17 @@ for item in data.values():
              
     try:
         if(isinstance(item['about'], list)):
-            for about in item['about']:
-                group2 = Qt.QGroupBox(about.get('title'))
+            for statFloat in item['about']:
+                group2 = Qt.QGroupBox(statFloat.get('title'))
                 group2.setAlignment(QtCore.Qt.AlignHCenter)
                 VerticalLayout2 = Qt.QHBoxLayout(group2)
-                label = Qt.QLabel(about.get('text'))
+                label = Qt.QLabel(statFloat.get('text'))
                 label.setWordWrap(True)
                 VerticalLayout2.addWidget(label)
-                
-                #sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.MinimumExpanding)
-                #group2.setSizePolicy(sizePolicy)
-                
                 VerticalLayout.addWidget(group2)
                     
-            for about in item['about']:
-                print(about.get('title'))
+            for statFloat in item['about']:
+                print(statFloat.get('title'))
 
         else:
             group2 = Qt.QGroupBox(item['about'].get('title'))
@@ -129,25 +135,22 @@ for item in data.values():
             label = Qt.QLabel(str(item['about'].get('text')))
             label.setWordWrap(True)
             VerticalLayout2.addWidget(label)
-            
-            #sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.MinimumExpanding)
-            #group2.setSizePolicy(sizePolicy)
-            
             VerticalLayout.addWidget(group2)
     except:
         print("can't do about")
         
     print("\n")
     
-    i=i+1
-    
+    #indexChange(i,j)
         
 w = Qt.QWidget()
+
 w.setLayout(layout)
 
 mw = Qt.QScrollArea()
-mw.resize(275, 900)
+mw.setAlignment(QtCore.Qt.AlignCenter)
+#mw.resize(260, 900)
 mw.setWidget(w)
-mw.show()
+mw.showMaximized()
 
 app.exec()

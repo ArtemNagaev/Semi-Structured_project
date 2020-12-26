@@ -25,7 +25,7 @@
 		"stat": "Potion",
 		"icon": "Icon Pack - Potion Red Vial.png",
 		"statFloat": {
-			"statLabel": "Restore HP",
+			"statLabel": "Restores HP",
 			"statValue": 10
 		}
 	},
@@ -45,6 +45,71 @@
 		"about": {
 			"title": "about",
 			"text": "This is Mage's book you need to take it to him\nMagic!"
+		}
+	},
+	"item5": {
+		"name": "Letter from the king",
+		"stat": "Quest item",
+		"icon": "Icon Pack - Envelope Sealed Red Plain.png",
+		"about": {
+			"title": "about",
+			"text": "The King wants to meet you at the Grand palace"
+		}
+	},
+	"item6": {
+		"name": "Scroll of Thunder",
+		"stat": "Magic scroll",
+		"icon": "Icon Pack - Scroll Yellow.png",
+		"statFloat": {
+			"statLabel": "Damage",
+			"statValue": 25
+		},
+		"about": {
+			"title": "about",
+			"text": "Cast thunder on one enemy"
+		}
+	},
+	"item7": {
+		"name": "Big Mana Potion",
+		"stat": "Potion",
+		"icon": "Icon Pack - Potion Blue Bottle.png",
+		"statFloat": {
+			"statLabel": "Restores Mana",
+			"statValue": 50
+		}
+	},
+	"item8": {
+		"name": "Sheet of paper",
+		"stat": "Item for crafting",
+		"icon": "Icon Pack - Paper Straight Plain.png",
+		"about": {
+			"title": "about",
+			"text": "This item is used for creating scrolls"
+		}
+	},
+	"item9": {
+		"name": "Green Pear",
+		"stat": "Food",
+		"icon": "Icon Pack - Fruit Green.png",
+		"statFloat": {
+			"statLabel": "Restores Food",
+			"statValue": 25
+		}
+	},
+	"item10": {
+		"name": "Knife",
+		"stat": "Weapon",
+		"icon": "Icon Pack - Knife Brown Clean.png",
+		"statFloat": {
+			"statLabel": "Damage",
+			"statValue": 5
+		}
+	},
+	"item11": {
+		"icon": "Icon Pack -  Sack Tan.png",
+		"statFloat": {
+			"statLabel": "Gold",
+			"statValue": 235
 		}
 	}
 }
