@@ -108,8 +108,6 @@ class Window(QWidget):
                             label.setText(str(data[item]))
                             label.setWordWrap(True)
                             layout.addWidget(label)
-                            if (data[item] == None):
-                                print("ай ай ай")
                     
 txt = Path('items.json').read_text()
 data = json.loads(txt)                   
