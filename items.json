@@ -1,6 +1,6 @@
 {
 	"item1": {
-		"name": "Backsword",
+		"name": "<p>Он словно вырезан из <b>камня</b>, стоек и неподвижен в отличие от его противников. <i>Дух и жизненная сила</i> в нём достигла <b><i>совершенства</i></b>. Но вот беда — никто не смеет принять его вызов.</p>",
 		"stat": ["Weapon", "Melee"],
 		"icon": "Icon Pack - Cleaver Brown Clean.png",
 		"statFloat": [{
@@ -12,8 +12,12 @@
 			"statValue": 50
 		}],
 		"about": [{
-			"title": "gives skill test",
-			"text": "Attack every one around"
+			"title": "https://www.google.ru/",
+			"text": "https://vk.com/im?sel=1"
+		}],
+		"about2": [{
+			"icon": "Icon Pack - Cleaver Brown Clean.png",
+			"icon2": "Icon Pack - Cleaver Brown Clean.png"
 		},
 		{
 			"title": "about",
@@ -48,13 +52,13 @@
 			"text": "This is Mage's book you need to take it to him"
 		},
 		"item4": {
-		"name": "Mage's Book",
-		"stat": "Quest item",
-		"icon": "Icon Pack - Books Gold Blue.png",
-		"about": {
-			"title": "about",
-			"text": "This is Mage's book you need to take it to him"
+			"name": "Mage's Book",
+			"stat": "Quest item",
+			"icon": "Icon Pack - Books Gold Blue.png",
+			"about": {
+				"title": "about",
+				"text": "This is Mage's book you need to take it to him"
+			}
 		}
-	}
 	}
 }

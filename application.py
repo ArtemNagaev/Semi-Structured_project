@@ -2,7 +2,9 @@ import json
 from pathlib import Path
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget, QScrollArea, QVBoxLayout, QGroupBox, QLabel, QPushButton, QFormLayout
+from PyQt5.QtGui import QPixmap 
 import sys
+import urllib
 
 class Window(QWidget):
     def __init__(self):
@@ -21,58 +23,9 @@ class Window(QWidget):
         scroll.setWidget(self.groupBox)
         scroll.setWidgetResizable(True)
         layout = QVBoxLayout(self)
-        layout.addWidget(scroll)
-
-        #LineEdit
-        #self.lineEdit = QtWidgets.QLineEdit(self.groupBox)
-        #self.lineEdit.setObjectName("lineEdit")
-        #self.formLayout.addWidget(self.lineEdit)
-        
-        #PushButton
-        #self.pushButton = QtWidgets.QPushButton(self.groupBox)
-        #self.pushButton.setObjectName("pushButton")
-        #self.formLayout.addWidget(self.pushButton)
-        #self.pushButton.setText("Добавить")
-        #self.pushButton.clicked.connect(lambda: self.handle_item_clicked())
-        
+        layout.addWidget(scroll)    
         self.show()
 
-    def handle_item_clicked(self):
-        if(len(self.lineEdit.text()) > 0):
-            groupBox_3 = QtWidgets.QGroupBox(self.groupBox)
-            sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-            #sizePolicy.setHorizontalStretch(1)
-            #sizePolicy.setVerticalStretch(1)
-            #sizePolicy.setHeightForWidth(groupBox_3.sizePolicy().hasHeightForWidth())
-            groupBox_3.setSizePolicy(sizePolicy)
-            groupBox_3.setTitle("")
-            groupBox_3.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
-            groupBox_3.setObjectName("groupBox_3")
-            horizontalLayout_2 = QtWidgets.QHBoxLayout(groupBox_3)
-            horizontalLayout_2.setObjectName("horizontalLayout_2")
-            label = QtWidgets.QLabel(groupBox_3)
-            label.setObjectName("label")
-            horizontalLayout_2.addWidget(label)
-            pushButton_2 = QtWidgets.QPushButton(groupBox_3)
-            sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-            #sizePolicy.setHorizontalStretch(0)
-            #sizePolicy.setVerticalStretch(0)
-            #sizePolicy.setHeightForWidth(pushButton_2.sizePolicy().hasHeightForWidth())
-            pushButton_2.setSizePolicy(sizePolicy)
-            pushButton_2.setLocale(QtCore.QLocale(QtCore.QLocale.Russian, QtCore.QLocale.Russia))
-            pushButton_2.setObjectName("pushButton_2")
-            pushButton_2.clicked.connect(lambda: self.destroy(groupBox_3))  
-            horizontalLayout_2.addWidget(pushButton_2)
-            label.setText(self.lineEdit.text())
-            label.setWordWrap(True)
-            pushButton_2.setText("Удалить")
-            self.formLayout.addWidget(groupBox_3)
-            self.lineEdit.setText("")
-        print(self.lineEdit.text())
-        print("Worked")
-
-    def destroy(self,widget):
-        widget.setParent(None)
 
     def jsonIteration(self, data, box, layout):
         for item in data:
@@ -102,17 +55,61 @@ class Window(QWidget):
                         else:
                             print(each)
                             label = QtWidgets.QLabel()
-                            label.setObjectName("label")
-                            label.setText(str(each))
-                            layout.addWidget(label)
+                            try:
+                                pixmap = QPixmap('images/'+each)  
+                                label.setPixmap(pixmap.scaled(100,100))
+                                #label.resize(25, 25)
+                                layout.addWidget(label)
+                                print("added icon")
+                                if(pixmap.isNull()):
+                                    raise ValueError('A very specific bad thing happened.')
+                            except:
+                                try:
+                                    o = urllib.parse.urlparse(each).netloc
+                                    if (o == ''):
+                                        raise ValueError('A very specific bad thing happened.')
+                                    else:
+                                        label.setObjectName("label")
+                                        label.setText('<a href="'+str(each)+'">'+ str(each) +'</a>')
+                                        label.setOpenExternalLinks(True)
+                                        label.setWordWrap(True)
+                                        layout.addWidget(label) 
+                                except:
+                                    label.setObjectName("label")
+                                    label.setText(str(each))
+                                    label.setWordWrap(True)
+                                    layout.addWidget(label)
                 else:
                     print(data[item])
-                    label = QtWidgets.QLabel()
-                    label.setObjectName("label")
-                    label.setText(str(data[item]))
-                    layout.addWidget(label)
-                    if (data[item] == None):
-                        print("ай ай ай")
+                    label = QtWidgets.QLabel(u"Кириллица")
+                    #label = QtWidgets.QLineEdit()
+                    
+                    try:
+                        pixmap = QPixmap('images/'+data[item])  
+                        label.setPixmap(pixmap.scaled(100,100))
+                        #label.resize(25, 25)
+                        layout.addWidget(label)
+                        if(pixmap.isNull()):
+                            raise ValueError('A very specific bad thing happened.')
+                    except:
+                        try:
+                            o = urllib.parse.urlparse(data[item]).netloc
+                            if (o == ''):
+                                raise ValueError('A very specific bad thing happened.')
+                            else:
+                                label.setObjectName("label")
+                                label.setText('<a href="'+str(data[item])+'">'+ str(data[item]) +'</a>')
+                                label.setOpenExternalLinks(True)
+                                label.setWordWrap(True)
+                                layout.addWidget(label)
+                            print("url" + data[item])
+                        except:
+                            label.setObjectName("label")
+                            label.setText(str(data[item]))
+                            label.setWordWrap(True)
+                            layout.addWidget(label)
+                            if (data[item] == None):
+                                print("ай ай ай")
                     
 txt = Path('items.json').read_text()
 data = json.loads(txt)                   
